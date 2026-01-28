@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NeighborNet - Your Community Dashboard">
+    <title>Dashboard | NeighborNet</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="header-left">
+                <div class="logo">
+                    <svg class="logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="32" height="32" rx="8" fill="url(#gradient)" />
+                        <path d="M16 8L22 12.5V22H19V16H13V22H10V12.5L16 8Z" fill="white" />
+                        <defs>
+                            <linearGradient id="gradient" x1="0" y1="0" x2="32" y2="32">
+                                <stop stop-color="#4F46E5" />
+                                <stop offset="1" stop-color="#7C3AED" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span class="logo-text">NeighborNet</span>
+                </div>
+            </div>
+
+            <div class="header-center">
+                <div class="society-info">
+                    <svg class="society-icon" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 1h2v2H7V5zm2 4H7v2h2V9zm2-4h2v2h-2V5zm2 4h-2v2h2V9z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    <span class="society-name">Sunrise Apartments</span>
+                </div>
+            </div>
+
+            <div class="header-right">
+                <div class="user-section">
+                    <!-- View Mode Toggle Switch -->
+                    <div class="view-mode-toggle" id="view-mode-toggle">
+                        <span class="toggle-label" id="toggle-label">Standard</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="view-mode-checkbox">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="user-info">
+                        <div class="user-avatar">
+                            <svg viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <div class="user-details">
+                            <span class="user-flat">Flat A-304</span>
+                            <span class="user-society">Sunrise Apartments</span>
+                        </div>
+                    </div>
+                    <button class="logout-btn" id="logout-btn" onclick="window.location.href='index.html'">
+                        <svg viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M3 3a1 1 0 00-1 1v12a1 1 0 001 1h12a1 1 0 001-1V4a1 1 0 00-1-1H3zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <span>Logout</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- Simple View Banner -->
+    <div class="simple-view-banner" id="simple-view-banner">
+        <div class="simple-view-content">
+            <svg class="simple-view-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                <circle cx="12" cy="12" r="3" />
+            </svg>
+            <span class="simple-view-text">Simple View Enabled</span>
+            <span class="simple-view-desc">Larger text &amp; easier navigation for you</span>
+        </div>
+        <button class="simple-view-toggle" id="toggle-view-btn">
+            <span>Switch to Standard View</span>
+        </button>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- SOS Emergency Banner -->
+            <div class="sos-banner" id="sos-banner">
+                <div class="sos-content">
+                    <div class="sos-icon-wrapper">
+                        <svg class="sos-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path
+                                d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+                            <line x1="12" y1="9" x2="12" y2="13" />
+                            <line x1="12" y1="17" x2="12.01" y2="17" />
+                        </svg>
+                    </div>
+                    <div class="sos-text">
+                        <span class="sos-title">Emergency SOS</span>
+                        <span class="sos-desc">No active emergencies in your society</span>
+                    </div>
+                </div>
+                <button class="sos-btn" id="sos-btn">
+                    <span>Report Emergency</span>
+                </button>
+            </div>
+
+            <!-- Society Tools Section -->
+            <section class="society-tools">
+                <div class="section-header">
+                    <h2 class="section-title">Society Tools</h2>
+                    <span class="section-subtitle">Quick access to community features</span>
+                </div>
+                <div class="tools-grid">
+                    <a href="booking.html" class="tool-card">
+                        <div class="tool-icon badminton">
+                            <span>🏸</span>
+                        </div>
+                        <div class="tool-info">
+                            <span class="tool-name">Book Badminton Court</span>
+                            <span class="tool-desc">Reserve your slot</span>
+                        </div>
+                        <svg class="tool-arrow" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                    <a href="rent-detail.html" class="tool-card">
+                        <div class="tool-icon rentals">
+                            <span>🏠</span>
+                        </div>
+                        <div class="tool-info">
+                            <span class="tool-name">House Rentals</span>
+                            <span class="tool-desc">Browse listings</span>
+                        </div>
+                        <svg class="tool-arrow" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                    <a href="parking-issue.html" class="tool-card">
+                        <div class="tool-icon parking">
+                            <span>🚗</span>
+                        </div>
+                        <div class="tool-info">
+                            <span class="tool-name">Parking Issues</span>
+                            <span class="tool-desc">Report or view</span>
+                        </div>
+                        <svg class="tool-arrow" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                    <a href="item-detail.html" class="tool-card">
+                        <div class="tool-icon lostfound">
+                            <span>🧳</span>
+                        </div>
+                        <div class="tool-info">
+                            <span class="tool-name">Lost & Found</span>
+                            <span class="tool-desc">Find or report items</span>
+                        </div>
+                        <svg class="tool-arrow" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Feed Section Header -->
+            <div class="feed-header">
+                <h2 class="feed-title">Community Feed</h2>
+            </div>
+
+            <!-- Category Tabs -->
+            <nav class="category-tabs" role="tablist">
+                <button class="tab-btn active" role="tab" aria-selected="true" data-category="all">
+                    <span class="tab-icon">🏠</span>
+                    <span class="tab-label">All</span>
+                </button>
+                <button class="tab-btn" role="tab" aria-selected="false" data-category="notices">
+                    <span class="tab-icon">📢</span>
+                    <span class="tab-label">Notices</span>
+                </button>
+                <button class="tab-btn" role="tab" aria-selected="false" data-category="help">
+                    <span class="tab-icon">❓</span>
+                    <span class="tab-label">Help</span>
+                </button>
+                <button class="tab-btn" role="tab" aria-selected="false" data-category="lost">
+                    <span class="tab-icon">🧳</span>
+                    <span class="tab-label">Lost & Found</span>
+                </button>
+                <button class="tab-btn" role="tab" aria-selected="false" data-category="events">
+                    <span class="tab-icon">🎉</span>
+                    <span class="tab-label">Events</span>
+                </button>
+                <button class="tab-btn" role="tab" aria-selected="false" data-category="booking">
+                    <span class="tab-icon">📅</span>
+                    <span class="tab-label">Booking</span>
+                </button>
+                <button class="tab-btn" role="tab" aria-selected="false" data-category="parking">
+                    <span class="tab-icon">🚗</span>
+                    <span class="tab-label">Parking</span>
+                </button>
+            </nav>
+
+            <!-- Feed Section -->
+            <section class="feed" id="feed">
+                <!-- Notice Post -->
+                <article class="post-card" data-category="notices">
+                    <div class="post-header">
+                        <div class="post-category notices">
+                            <span class="category-icon">📢</span>
+                            <span class="category-label">Notice</span>
+                        </div>
+                        <span class="post-time">2 hours ago</span>
+                    </div>
+                    <h3 class="post-title">Water Supply Maintenance on Saturday</h3>
+                    <p class="post-description">Municipal water supply will be interrupted from 9 AM to 2 PM this
+                        Saturday for pipeline maintenance. Please store adequate water.</p>
+                    <div class="post-footer">
+                        <div class="post-author">
+                            <div class="author-avatar">S</div>
+                            <span class="author-flat">Secretary Office</span>
+                        </div>
+                        <div class="post-actions">
+                            <button class="action-btn" aria-label="Like">
+                                <svg viewBox="0 0 20 20" fill="currentColor">
+                                    <path
+                                        d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
+                                </svg>
+                                <span>12</span>
+                            </button>
+                            <button class="action-btn" aria-label="Comment">
+                                <svg viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <span>3</span>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Help Post -->
+                <article class="post-card" data-category="help">
+                    <div class="post-header">
+                        <div class="post-category help">
+                            <span class="category-icon">❓</span>
+                            <span class="category-label">Help Needed</span>
+                        </div>
+                        <span class="post-time">5 hours ago</span>
+                    </div>
+                    <h3 class="post-title">Looking for a reliable electrician</h3>
+                    <p class="post-description">Can anyone recommend a good electrician? Need to fix some wiring issues
+                        in the kitchen. Preferably someone who has worked in our society before.</p>
+                    <div class="post-footer">
+                        <div class="post-author">
+                            <div class="author-avatar">B2</div>
+                            <span class="author-flat">Flat B-202</span>
+                        </div>
+                        <div class="post-actions">
+                            <button class="action-btn" aria-label="Like">
+                                <svg viewBox="0 0 20 20" fill="currentColor">
+                                    <path
+                                        d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
+                                </svg>
+                                <span>4</span>
+                            </button>
+                            <button class="action-btn" aria-label="Comment">
+                                <svg viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <span>7</span>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Lost & Found Post -->
+                <article class="post-card" data-category="lost">
+                    <div class="post-header">
+                        <div class="post-category lost">
+                            <span class="category-icon">🧳</span>
+                            <span class="category-label">Lost & Found</span>
+                        </div>
+                        <span class="post-time">Yesterday</span>
+                    </div>
+                    <h3 class="post-title">Found: Set of keys near parking area</h3>
+                    <p class="post-description">Found a set of 4 keys with a blue keychain near the Block C parking area
+                        yesterday evening. Please contact if these belong to you.</p>
+                    <div class="post-footer">
+                        <div class="post-author">
+                            <div class="author-avatar">C1</div>
+                            <span class="author-flat">Flat C-101</span>
+                        </div>
+                        <div class="post-actions">
+                            <button class="action-btn" aria-label="Like">
+                                <svg viewBox="0 0 20 20" fill="currentColor">
+                                    <path
+                                        d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
+                                </svg>
+                                <span>8</span>
+                            </button>
+                            <button class="action-btn" aria-label="Comment">
+                                <svg viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <span>2</span>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Events Post -->
+                <article class="post-card" data-category="events">
+                    <div class="post-header">
+                        <div class="post-category events">
+                            <span class="category-icon">🎉</span>
+                            <span class="category-label">Event</span>
+                        </div>
+                        <span class="post-time">2 days ago</span>
+                    </div>
+                    <h3 class="post-title">Republic Day Celebration - Jan 26th</h3>
+                    <p class="post-description">Join us for the Republic Day flag hoisting ceremony at 8 AM in the main
+                        garden area. Followed by cultural programs and breakfast for all residents.</p>
+                    <div class="post-footer">
+                        <div class="post-author">
+                            <div class="author-avatar">E</div>
+                            <span class="author-flat">Events Committee</span>
+                        </div>
+                        <div class="post-actions">
+                            <button class="action-btn" aria-label="Like">
+                                <svg viewBox="0 0 20 20" fill="currentColor">
+                                    <path
+                                        d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
+                                </svg>
+                                <span>24</span>
+                            </button>
+                            <button class="action-btn" aria-label="Comment">
+                                <svg viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <span>15</span>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Another Notice -->
+                <article class="post-card" data-category="notices">
+                    <div class="post-header">
+                        <div class="post-category notices">
+                            <span class="category-icon">📢</span>
+                            <span class="category-label">Notice</span>
+                        </div>
+                        <span class="post-time">3 days ago</span>
+                    </div>
+                    <h3 class="post-title">Monthly Maintenance Due - February</h3>
+                    <p class="post-description">Reminder: February maintenance charges are due by 5th. Please pay via
+                        UPI or deposit in the society account. Late fees apply after the due date.</p>
+                    <div class="post-footer">
+                        <div class="post-author">
+                            <div class="author-avatar">T</div>
+                            <span class="author-flat">Treasurer Office</span>
+                        </div>
+                        <div class="post-actions">
+                            <button class="action-btn" aria-label="Like">
+                                <svg viewBox="0 0 20 20" fill="currentColor">
+                                    <path
+                                        d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
+                                </svg>
+                                <span>5</span>
+                            </button>
+                            <button class="action-btn" aria-label="Comment">
+                                <svg viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <span>1</span>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+            </section>
+        </div>
+    </main>
+
+    <!-- Emergency Report Modal -->
+    <div class="modal-overlay" id="emergency-modal">
+        <div class="modal-container">
+            <div class="modal-header emergency-header">
+                <div class="modal-icon-wrapper">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+                        <line x1="12" y1="9" x2="12" y2="13" />
+                        <line x1="12" y1="17" x2="12.01" y2="17" />
+                    </svg>
+                </div>
+                <h2 class="modal-title">Report Emergency</h2>
+                <p class="modal-subtitle">This will immediately alert all residents and society management</p>
+                <button class="modal-close" id="modal-close">&times;</button>
+            </div>
+            <form class="modal-body" id="emergency-form">
+                <div class="form-group">
+                    <label class="form-label" for="emergency-type">Emergency Type *</label>
+                    <select class="form-select" id="emergency-type" required>
+                        <option value="">Select emergency type</option>
+                        <option value="fire">🔥 Fire Emergency</option>
+                        <option value="medical">🏥 Medical Emergency</option>
+                        <option value="security">🚨 Security Threat</option>
+                        <option value="gas">⚠️ Gas Leak</option>
+                        <option value="water">💧 Water/Flood Emergency</option>
+                        <option value="electrical">⚡ Electrical Emergency</option>
+                        <option value="other">📢 Other Emergency</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="emergency-location">Location *</label>
+                    <input type="text" class="form-input" id="emergency-location"
+                        placeholder="e.g., Block A - 3rd Floor, Parking Lot" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="emergency-description">Description</label>
+                    <textarea class="form-textarea" id="emergency-description" rows="3"
+                        placeholder="Briefly describe the emergency situation..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="emergency-contact">Your Contact Number *</label>
+                    <input type="tel" class="form-input" id="emergency-contact" placeholder="+91 9876543210" required>
+                </div>
+                <div class="form-warning">
+                    <svg viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    <span>False alarms may result in penalties. Only report genuine emergencies.</span>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-cancel" id="btn-cancel">Cancel</button>
+                    <button type="submit" class="btn-emergency">🚨 Report Emergency</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Emergency Success Modal -->
+    <div class="modal-overlay" id="success-modal">
+        <div class="modal-container success-container">
+            <div class="success-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                    <polyline points="22 4 12 14.01 9 11.01" />
+                </svg>
+            </div>
+            <h2 class="success-title">Emergency Reported!</h2>
+            <p class="success-message">All residents and society management have been alerted. Help is on the way.</p>
+            <div class="success-details" id="success-details"></div>
+            <button class="btn-done" id="btn-done">Done</button>
+        </div>
+    </div>
+
+    <script>
+        // View Mode Handler with Toggle Switch
+        (function () {
+            const viewingMode = localStorage.getItem('neighbornet-viewing-mode') || 'standard';
+            const banner = document.getElementById('simple-view-banner');
+            const toggleBtn = document.getElementById('toggle-view-btn');
+            const viewModeCheckbox = document.getElementById('view-mode-checkbox');
+            const toggleLabel = document.getElementById('toggle-label');
+
+            function applyViewMode(mode) {
+                if (mode === 'simple') {
+                    document.body.classList.add('simple-view');
+                    banner.classList.add('visible');
+                    viewModeCheckbox.checked = true;
+                    toggleLabel.textContent = 'Simple';
+                } else {
+                    document.body.classList.remove('simple-view');
+                    banner.classList.remove('visible');
+                    viewModeCheckbox.checked = false;
+                    toggleLabel.textContent = 'Standard';
+                }
+            }
+
+            // Apply initial mode
+            applyViewMode(viewingMode);
+
+            // Toggle switch handler
+            viewModeCheckbox.addEventListener('change', () => {
+                const newMode = viewModeCheckbox.checked ? 'simple' : 'standard';
+                localStorage.setItem('neighbornet-viewing-mode', newMode);
+                applyViewMode(newMode);
+            });
+
+            // Banner toggle button handler
+            toggleBtn.addEventListener('click', () => {
+                const newMode = document.body.classList.contains('simple-view') ? 'standard' : 'simple';
+                localStorage.setItem('neighbornet-viewing-mode', newMode);
+                applyViewMode(newMode);
+            });
+        })();
+
+        // Tab filtering functionality
+        const tabs = document.querySelectorAll('.tab-btn');
+        const posts = document.querySelectorAll('.post-card');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Update active tab
+                tabs.forEach(t => {
+                    t.classList.remove('active');
+                    t.setAttribute('aria-selected', 'false');
+                });
+                tab.classList.add('active');
+                tab.setAttribute('aria-selected', 'true');
+
+                // Filter posts
+                const category = tab.dataset.category;
+                posts.forEach(post => {
+                    if (category === 'all' || post.dataset.category === category) {
+                        post.style.display = 'block';
+                        post.style.animation = 'fadeIn 0.3s ease';
+                    } else {
+                        post.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Emergency Modal Handler
+        const sosBtn = document.getElementById('sos-btn');
+        const emergencyModal = document.getElementById('emergency-modal');
+        const successModal = document.getElementById('success-modal');
+        const modalClose = document.getElementById('modal-close');
+        const btnCancel = document.getElementById('btn-cancel');
+        const btnDone = document.getElementById('btn-done');
+        const emergencyForm = document.getElementById('emergency-form');
+        const successDetails = document.getElementById('success-details');
+
+        function openEmergencyModal() {
+            emergencyModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeEmergencyModal() {
+            emergencyModal.classList.remove('active');
+            document.body.style.overflow = '';
+            emergencyForm.reset();
+        }
+
+        function openSuccessModal(details) {
+            successModal.classList.add('active');
+            successDetails.innerHTML = details;
+        }
+
+        function closeSuccessModal() {
+            successModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // SOS button opens emergency modal
+        sosBtn.addEventListener('click', openEmergencyModal);
+
+        // Close modal handlers
+        modalClose.addEventListener('click', closeEmergencyModal);
+        btnCancel.addEventListener('click', closeEmergencyModal);
+        btnDone.addEventListener('click', closeSuccessModal);
+
+        // Close on overlay click
+        emergencyModal.addEventListener('click', (e) => {
+            if (e.target === emergencyModal) closeEmergencyModal();
+        });
+        successModal.addEventListener('click', (e) => {
+            if (e.target === successModal) closeSuccessModal();
+        });
+
+        // Form submission
+        emergencyForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const emergencyType = document.getElementById('emergency-type');
+            const location = document.getElementById('emergency-location').value;
+            const description = document.getElementById('emergency-description').value;
+            const contact = document.getElementById('emergency-contact').value;
+
+            const typeText = emergencyType.options[emergencyType.selectedIndex].text;
+
+            closeEmergencyModal();
+
+            const details = `
+                <div class="detail-item"><strong>Type:</strong> ${typeText}</div>
+                <div class="detail-item"><strong>Location:</strong> ${location}</div>
+                ${description ? `<div class="detail-item"><strong>Description:</strong> ${description}</div>` : ''}
+                <div class="detail-item"><strong>Contact:</strong> ${contact}</div>
+                <div class="detail-item"><strong>Time:</strong> ${new Date().toLocaleString()}</div>
+            `;
+
+            openSuccessModal(details);
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeEmergencyModal();
+                closeSuccessModal();
+            }
+        });
+
+        // Quick action button alert (placeholder)
+        document.querySelectorAll('.quick-action-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const action = btn.querySelector('span').textContent;
+                alert(`${action} feature coming soon!`);
+            });
+        });
+    </script>
+</body>
+
+</html>

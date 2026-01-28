@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Book Badminton Court - NeighborNet">
+    <title>Badminton Court Booking | NeighborNet</title>
+    <link rel="stylesheet" href="booking.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="page-container">
+        <!-- Back Navigation -->
+        <nav class="back-nav">
+            <a href="dashboard.html" class="back-link">
+                <svg viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd"
+                        d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                        clip-rule="evenodd" />
+                </svg>
+                <span>Back to Feed</span>
+            </a>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main">
+            <div class="booking-container">
+                <!-- Facility Header -->
+                <div class="facility-header">
+                    <div class="facility-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M12 6v6l4 2" />
+                        </svg>
+                    </div>
+                    <div class="facility-info">
+                        <h1 class="page-title">Badminton Court Booking</h1>
+                        <p class="facility-location">Ground Floor, Block A</p>
+                    </div>
+                </div>
+
+                <!-- Date Selection -->
+                <section class="date-section">
+                    <h2 class="section-label">Select Date</h2>
+                    <div class="date-picker">
+                        <button class="date-card active" data-date="today">
+                            <span class="date-day">Today</span>
+                            <span class="date-full">Jan 28</span>
+                        </button>
+                        <button class="date-card" data-date="tomorrow">
+                            <span class="date-day">Tomorrow</span>
+                            <span class="date-full">Jan 29</span>
+                        </button>
+                        <button class="date-card" data-date="day3">
+                            <span class="date-day">Thu</span>
+                            <span class="date-full">Jan 30</span>
+                        </button>
+                        <button class="date-card" data-date="day4">
+                            <span class="date-day">Fri</span>
+                            <span class="date-full">Jan 31</span>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Time Slots -->
+                <section class="slots-section">
+                    <h2 class="section-label">Available Slots</h2>
+
+                    <!-- Morning Slots -->
+                    <div class="slot-group">
+                        <h3 class="slot-group-title">
+                            <svg viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span>Morning</span>
+                        </h3>
+                        <div class="slots-grid">
+                            <button class="slot-card available" data-time="6:00 – 7:00 AM">
+                                <span class="slot-time">6:00 – 7:00 AM</span>
+                                <span class="slot-status">Available</span>
+                            </button>
+                            <button class="slot-card selected" data-time="7:00 – 8:00 AM">
+                                <span class="slot-time">7:00 – 8:00 AM</span>
+                                <span class="slot-status">
+                                    <svg viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd"
+                                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    Selected
+                                </span>
+                            </button>
+                            <button class="slot-card booked" data-time="8:00 – 9:00 AM" disabled>
+                                <span class="slot-time">8:00 – 9:00 AM</span>
+                                <span class="slot-status">Booked</span>
+                            </button>
+                            <button class="slot-card booked" data-time="9:00 – 10:00 AM" disabled>
+                                <span class="slot-time">9:00 – 10:00 AM</span>
+                                <span class="slot-status">Booked</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Evening Slots -->
+                    <div class="slot-group">
+                        <h3 class="slot-group-title">
+                            <svg viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+                            </svg>
+                            <span>Evening</span>
+                        </h3>
+                        <div class="slots-grid">
+                            <button class="slot-card available" data-time="5:00 – 6:00 PM">
+                                <span class="slot-time">5:00 – 6:00 PM</span>
+                                <span class="slot-status">Available</span>
+                            </button>
+                            <button class="slot-card available" data-time="6:00 – 7:00 PM">
+                                <span class="slot-time">6:00 – 7:00 PM</span>
+                                <span class="slot-status">Available</span>
+                            </button>
+                            <button class="slot-card booked" data-time="7:00 – 8:00 PM" disabled>
+                                <span class="slot-time">7:00 – 8:00 PM</span>
+                                <span class="slot-status">Booked</span>
+                            </button>
+                            <button class="slot-card available" data-time="8:00 – 9:00 PM">
+                                <span class="slot-time">8:00 – 9:00 PM</span>
+                                <span class="slot-status">Available</span>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Booking Summary -->
+                <section class="summary-section" id="booking-summary">
+                    <h2 class="section-label">Booking Summary</h2>
+                    <div class="summary-card">
+                        <div class="summary-row">
+                            <span class="summary-label">Facility</span>
+                            <span class="summary-value">Badminton Court</span>
+                        </div>
+                        <div class="summary-row">
+                            <span class="summary-label">Date</span>
+                            <span class="summary-value" id="summary-date">Today, Jan 28</span>
+                        </div>
+                        <div class="summary-row">
+                            <span class="summary-label">Time Slot</span>
+                            <span class="summary-value highlight" id="summary-time">7:00 – 8:00 AM</span>
+                        </div>
+                        <div class="summary-row">
+                            <span class="summary-label">Booked by</span>
+                            <span class="summary-value">Flat A-304</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Confirm Button -->
+                <button class="confirm-btn" id="confirm-btn">
+                    <svg viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    <span>Confirm Booking</span>
+                </button>
+
+                <!-- Notice -->
+                <p class="booking-notice">
+                    <svg viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    <span>Cancellations allowed up to 2 hours before the slot time.</span>
+                </p>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2026 NeighborNet. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal-overlay" id="success-modal">
+        <div class="modal">
+            <div class="success-icon">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10" fill="#10B981" />
+                    <path d="M8 12l2.5 2.5L16 9" stroke="white" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </div>
+            <h2 class="modal-title">Booking Confirmed!</h2>
+            <p class="modal-subtitle">Your badminton court slot has been booked successfully.</p>
+
+            <div class="confirmation-details">
+                <div class="confirm-row">
+                    <span class="confirm-label">Date & Time</span>
+                    <span class="confirm-value" id="confirm-datetime">Today, 7:00 – 8:00 AM</span>
+                </div>
+                <div class="confirm-row">
+                    <span class="confirm-label">Booking ID</span>
+                    <span class="confirm-value">#BC20260128-001</span>
+                </div>
+            </div>
+
+            <button class="done-btn" id="done-btn">
+                <span>Done</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Slot selection
+        const slots = document.querySelectorAll('.slot-card.available, .slot-card.selected');
+        const summaryTime = document.getElementById('summary-time');
+        const confirmBtn = document.getElementById('confirm-btn');
+        const successModal = document.getElementById('success-modal');
+        const doneBtn = document.getElementById('done-btn');
+        const confirmDatetime = document.getElementById('confirm-datetime');
+
+        slots.forEach(slot => {
+            slot.addEventListener('click', () => {
+                // Remove selected from all
+                document.querySelectorAll('.slot-card').forEach(s => {
+                    s.classList.remove('selected');
+                    if (!s.disabled) {
+                        s.classList.add('available');
+                        s.querySelector('.slot-status').textContent = 'Available';
+                    }
+                });
+
+                // Add selected to clicked
+                slot.classList.remove('available');
+                slot.classList.add('selected');
+                slot.querySelector('.slot-status').innerHTML = `
+                    <svg viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                    </svg>
+                    Selected
+                `;
+
+                // Update summary
+                summaryTime.textContent = slot.dataset.time;
+            });
+        });
+
+        // Date selection
+        const dateCards = document.querySelectorAll('.date-card');
+        const summaryDate = document.getElementById('summary-date');
+        const dateLabels = {
+            'today': 'Today, Jan 28',
+            'tomorrow': 'Tomorrow, Jan 29',
+            'day3': 'Thu, Jan 30',
+            'day4': 'Fri, Jan 31'
+        };
+
+        dateCards.forEach(card => {
+            card.addEventListener('click', () => {
+                dateCards.forEach(c => c.classList.remove('active'));
+                card.classList.add('active');
+                summaryDate.textContent = dateLabels[card.dataset.date];
+            });
+        });
+
+        // Confirm booking
+        confirmBtn.addEventListener('click', () => {
+            const selectedSlot = document.querySelector('.slot-card.selected');
+            if (selectedSlot) {
+                const selectedDate = document.querySelector('.date-card.active');
+                confirmDatetime.textContent = `${dateLabels[selectedDate.dataset.date].split(',')[0]}, ${selectedSlot.dataset.time}`;
+                successModal.classList.add('active');
+            }
+        });
+
+        // Done button
+        doneBtn.addEventListener('click', () => {
+            successModal.classList.remove('active');
+            // In production, redirect to bookings page
+            alert('Redirecting to your bookings...');
+        });
+
+        // Close modal on overlay click
+        successModal.addEventListener('click', (e) => {
+            if (e.target === successModal) {
+                successModal.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+
+</html>

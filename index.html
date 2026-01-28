@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NeighborNet - Private, verified communication for your residential community.">
+    <title>NeighborNet - Join Your Community</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="logo">
+                <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="40" height="40" rx="10" fill="url(#gradient)" />
+                    <path d="M20 10L28 16V28H24V20H16V28H12V16L20 10Z" fill="white" />
+                    <defs>
+                        <linearGradient id="gradient" x1="0" y1="0" x2="40" y2="40">
+                            <stop stop-color="#4F46E5" />
+                            <stop offset="1" stop-color="#7C3AED" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <span class="logo-text">NeighborNet</span>
+            </div>
+            <p class="tagline">Private, verified communication for your residential community.</p>
+        </header>
+
+        <!-- Main Form Card -->
+        <main class="main">
+            <div class="card">
+                <h1 class="card-title">Join Your Community</h1>
+                <p class="card-subtitle">Enter your details to get started</p>
+
+                <form id="onboarding-form" class="form">
+                    <!-- Mobile Number Field -->
+                    <div class="form-group">
+                        <label for="mobile" class="form-label">Mobile Number</label>
+                        <div class="input-wrapper phone-input">
+                            <select id="country-code" class="country-select" aria-label="Country code">
+                                <option value="+91">🇮🇳 +91</option>
+                                <option value="+1">🇺🇸 +1</option>
+                                <option value="+44">🇬🇧 +44</option>
+                                <option value="+971">🇦🇪 +971</option>
+                                <option value="+65">🇸🇬 +65</option>
+                                <option value="+61">🇦🇺 +61</option>
+                            </select>
+                            <input type="tel" id="mobile" class="form-input phone-number" placeholder="9876543210"
+                                pattern="[0-9]{10}" required aria-describedby="mobile-hint">
+                        </div>
+                        <span id="mobile-hint" class="input-hint">Enter your 10-digit mobile number</span>
+                    </div>
+
+                    <!-- Society Code Field -->
+                    <div class="form-group">
+                        <label for="society-code" class="form-label">Society Code</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="society-code" class="form-input" placeholder="SUNRISE123" required
+                                aria-describedby="society-hint">
+                        </div>
+                        <span id="society-hint" class="input-hint">Unique code provided by your society admin</span>
+                    </div>
+
+                    <!-- Flat Number Field -->
+                    <div class="form-group">
+                        <label for="flat-number" class="form-label">Flat Number</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="flat-number" class="form-input" placeholder="A-304" required
+                                aria-describedby="flat-hint">
+                        </div>
+                        <span id="flat-hint" class="input-hint">Your flat/apartment number (e.g., A-304)</span>
+                    </div>
+
+                    <!-- Viewing Mode Preference -->
+                    <div class="form-group">
+                        <label class="form-label">Viewing Mode</label>
+                        <p class="preference-description">Choose how you'd like to view the app</p>
+
+                        <div class="viewing-mode-options">
+                            <label class="mode-option" for="standard-view">
+                                <input type="radio" id="standard-view" name="viewing-mode" value="standard" checked>
+                                <div class="mode-card">
+                                    <div class="mode-icon standard-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <rect x="3" y="3" width="7" height="7" rx="1" />
+                                            <rect x="14" y="3" width="7" height="7" rx="1" />
+                                            <rect x="3" y="14" width="7" height="7" rx="1" />
+                                            <rect x="14" y="14" width="7" height="7" rx="1" />
+                                        </svg>
+                                    </div>
+                                    <div class="mode-content">
+                                        <span class="mode-title">Standard View</span>
+                                        <span class="mode-desc">Full features with regular text size</span>
+                                    </div>
+                                    <div class="mode-check">
+                                        <svg viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd"
+                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </label>
+
+                            <label class="mode-option" for="simple-view">
+                                <input type="radio" id="simple-view" name="viewing-mode" value="simple">
+                                <div class="mode-card">
+                                    <div class="mode-icon simple-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <rect x="4" y="4" width="16" height="16" rx="2" />
+                                            <line x1="8" y1="10" x2="16" y2="10" />
+                                            <line x1="8" y1="14" x2="14" y2="14" />
+                                        </svg>
+                                    </div>
+                                    <div class="mode-content">
+                                        <span class="mode-title">Simple View</span>
+                                        <span class="mode-badge">Recommended for Senior Residents</span>
+                                        <span class="mode-desc">Larger text, fewer elements, easier to navigate</span>
+                                    </div>
+                                    <div class="mode-check">
+                                        <svg viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd"
+                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn-primary" id="submit-btn">
+                        <span class="btn-text">Join Community</span>
+                        <svg class="btn-icon" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </form>
+
+                <!-- Trust Badge -->
+                <div class="trust-section">
+                    <svg class="trust-icon" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    <p class="trust-text">
+                        Access is restricted to verified residents only. Your data is visible only within your society.
+                    </p>
+                </div>
+            </div>
+        </main>
+
+        <!-- OTP Verification Modal -->
+        <div class="modal-overlay" id="otp-modal">
+            <div class="modal">
+                <button class="modal-close" id="modal-close" aria-label="Close">
+                    <svg viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </button>
+
+                <div class="modal-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                    </svg>
+                </div>
+
+                <h2 class="modal-title">Verify Your Number</h2>
+                <p class="modal-subtitle">
+                    We've sent a 6-digit OTP to<br>
+                    <strong id="display-phone">+91 9876543210</strong>
+                </p>
+
+                <form id="otp-form" class="otp-form">
+                    <div class="otp-inputs">
+                        <input type="text" class="otp-input" maxlength="1" pattern="[0-9]" inputmode="numeric"
+                            aria-label="OTP digit 1" autofocus>
+                        <input type="text" class="otp-input" maxlength="1" pattern="[0-9]" inputmode="numeric"
+                            aria-label="OTP digit 2">
+                        <input type="text" class="otp-input" maxlength="1" pattern="[0-9]" inputmode="numeric"
+                            aria-label="OTP digit 3">
+                        <input type="text" class="otp-input" maxlength="1" pattern="[0-9]" inputmode="numeric"
+                            aria-label="OTP digit 4">
+                        <input type="text" class="otp-input" maxlength="1" pattern="[0-9]" inputmode="numeric"
+                            aria-label="OTP digit 5">
+                        <input type="text" class="otp-input" maxlength="1" pattern="[0-9]" inputmode="numeric"
+                            aria-label="OTP digit 6">
+                    </div>
+
+                    <div class="otp-error" id="otp-error">Invalid OTP. Please try again.</div>
+
+                    <button type="submit" class="btn-primary btn-verify" id="verify-btn">
+                        <span class="btn-text">Verify & Join</span>
+                        <svg class="btn-icon" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </form>
+
+                <div class="resend-section">
+                    <p class="resend-text">Didn't receive the code?</p>
+                    <button type="button" class="resend-btn" id="resend-btn" disabled>
+                        Resend OTP <span id="timer">(30s)</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Success Modal -->
+        <div class="modal-overlay" id="success-modal">
+            <div class="modal modal-success">
+                <div class="success-icon">
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" fill="#10B981" />
+                        <path d="M8 12l2.5 2.5L16 9" stroke="white" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <h2 class="modal-title">Welcome to NeighborNet!</h2>
+                <p class="modal-subtitle">Your account has been verified successfully. You're now part of your
+                    community.</p>
+                <button class="btn-primary" id="continue-btn">
+                    <span class="btn-text">Continue to Dashboard</span>
+                    <svg class="btn-icon" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2026 NeighborNet. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // DOM Elements
+        const onboardingForm = document.getElementById('onboarding-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const otpModal = document.getElementById('otp-modal');
+        const otpForm = document.getElementById('otp-form');
+        const otpInputs = document.querySelectorAll('.otp-input');
+        const otpError = document.getElementById('otp-error');
+        const verifyBtn = document.getElementById('verify-btn');
+        const resendBtn = document.getElementById('resend-btn');
+        const timerSpan = document.getElementById('timer');
+        const modalClose = document.getElementById('modal-close');
+        const successModal = document.getElementById('success-modal');
+        const continueBtn = document.getElementById('continue-btn');
+        const displayPhone = document.getElementById('display-phone');
+
+        let resendTimer = 30;
+        let timerInterval;
+
+        // Form submission - Show OTP Modal
+        onboardingForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const countryCode = document.getElementById('country-code').value;
+            const mobile = document.getElementById('mobile').value;
+            const originalContent = submitBtn.innerHTML;
+
+            // Show loading state
+            submitBtn.innerHTML = '<span class="btn-text">Sending OTP...</span><span class="loading-spinner"></span>';
+            submitBtn.disabled = true;
+
+            // Simulate API call to send OTP
+            setTimeout(() => {
+                submitBtn.innerHTML = originalContent;
+                submitBtn.disabled = false;
+
+                // Update display phone
+                displayPhone.textContent = `${countryCode} ${mobile}`;
+
+                // Show OTP modal
+                otpModal.classList.add('active');
+                otpInputs[0].focus();
+
+                // Start resend timer
+                startResendTimer();
+            }, 1500);
+        });
+
+        // OTP Input Handling
+        otpInputs.forEach((input, index) => {
+            // Only allow numbers
+            input.addEventListener('input', function (e) {
+                this.value = this.value.replace(/[^0-9]/g, '');
+
+                // Auto-focus next input
+                if (this.value && index < otpInputs.length - 1) {
+                    otpInputs[index + 1].focus();
+                }
+
+                // Hide error when typing
+                otpError.classList.remove('show');
+            });
+
+            // Handle backspace
+            input.addEventListener('keydown', function (e) {
+                if (e.key === 'Backspace' && !this.value && index > 0) {
+                    otpInputs[index - 1].focus();
+                }
+            });
+
+            // Handle paste
+            input.addEventListener('paste', function (e) {
+                e.preventDefault();
+                const pastedData = e.clipboardData.getData('text').replace(/[^0-9]/g, '').slice(0, 6);
+                pastedData.split('').forEach((char, i) => {
+                    if (otpInputs[i]) otpInputs[i].value = char;
+                });
+                if (pastedData.length === 6) {
+                    otpInputs[5].focus();
+                }
+            });
+        });
+
+        // OTP Form Submission
+        otpForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const otp = Array.from(otpInputs).map(input => input.value).join('');
+
+            if (otp.length !== 6) {
+                otpError.textContent = 'Please enter all 6 digits.';
+                otpError.classList.add('show');
+                return;
+            }
+
+            const originalContent = verifyBtn.innerHTML;
+            verifyBtn.innerHTML = '<span class="btn-text">Verifying...</span><span class="loading-spinner"></span>';
+            verifyBtn.disabled = true;
+
+            // Simulate OTP verification (any 6-digit code works for demo)
+            setTimeout(() => {
+                // For demo: accept any 6-digit OTP
+                // In production, validate against backend
+                verifyBtn.innerHTML = originalContent;
+                verifyBtn.disabled = false;
+
+                // Close OTP modal and show success
+                otpModal.classList.remove('active');
+                successModal.classList.add('active');
+
+                // Clear timer
+                clearInterval(timerInterval);
+            }, 1500);
+        });
+
+        // Resend Timer
+        function startResendTimer() {
+            resendTimer = 30;
+            resendBtn.disabled = true;
+            timerSpan.textContent = `(${resendTimer}s)`;
+
+            timerInterval = setInterval(() => {
+                resendTimer--;
+                timerSpan.textContent = `(${resendTimer}s)`;
+
+                if (resendTimer <= 0) {
+                    clearInterval(timerInterval);
+                    resendBtn.disabled = false;
+                    timerSpan.textContent = '';
+                }
+            }, 1000);
+        }
+
+        // Resend OTP
+        resendBtn.addEventListener('click', function () {
+            // Show loading
+            this.textContent = 'Sending...';
+            this.disabled = true;
+
+            setTimeout(() => {
+                // Reset inputs
+                otpInputs.forEach(input => input.value = '');
+                otpInputs[0].focus();
+                otpError.classList.remove('show');
+
+                // Reset button and start timer
+                this.innerHTML = 'Resend OTP <span id="timer">(30s)</span>';
+                startResendTimer();
+            }, 1000);
+        });
+
+        // Close modal
+        modalClose.addEventListener('click', function () {
+            otpModal.classList.remove('active');
+            clearInterval(timerInterval);
+            // Reset OTP inputs
+            otpInputs.forEach(input => input.value = '');
+            otpError.classList.remove('show');
+        });
+
+        // Close modal on overlay click
+        otpModal.addEventListener('click', function (e) {
+            if (e.target === this) {
+                modalClose.click();
+            }
+        });
+
+        // Continue button - Navigate to Dashboard
+        continueBtn.addEventListener('click', function () {
+            // Save viewing mode preference to localStorage
+            const selectedMode = document.querySelector('input[name="viewing-mode"]:checked');
+            if (selectedMode) {
+                localStorage.setItem('neighbornet-viewing-mode', selectedMode.value);
+            }
+            // Navigate to dashboard
+            window.location.href = 'dashboard.html';
+        });
+
+        // Format phone number input
+        document.getElementById('mobile').addEventListener('input', function (e) {
+            this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);
+        });
+
+        // Uppercase society code
+        document.getElementById('society-code').addEventListener('input', function (e) {
+            this.value = this.value.toUpperCase();
+        });
+
+        // Escape key to close modal
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && otpModal.classList.contains('active')) {
+                modalClose.click();
+            }
+        });
+    </script>
+</body>
+
+</html>
