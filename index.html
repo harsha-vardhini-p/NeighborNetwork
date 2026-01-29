@@ -190,7 +190,22 @@
         </div>
     </div>
 
+    <script src="neighbornet-db.js"></script>
     <script>
+        // Check if already logged in - redirect to appropriate page
+        (function () {
+            if (NeighborNetDB.isLoggedIn()) {
+                const user = NeighborNetDB.getCurrentUser();
+                if (user.role === 'admin') {
+                    window.location.href = 'admin-dashboard.html';
+                } else if (user.verificationStatus === 'pending') {
+                    window.location.href = 'pending-verification.html';
+                } else {
+                    window.location.href = 'dashboard.html';
+                }
+            }
+        })();
+
         // DOM Elements
         const loginForm = document.getElementById('login-form');
         const submitBtn = document.getElementById('submit-btn');
@@ -208,6 +223,7 @@
 
         let resendTimer = 30;
         let timerInterval;
+        let loginData = {}; // Store login data for session
 
         // Form submission - Show OTP Modal
         loginForm.addEventListener('submit', function (e) {
@@ -215,7 +231,16 @@
 
             const countryCode = document.getElementById('country-code').value;
             const mobile = document.getElementById('mobile').value;
+            const flatNumber = document.getElementById('flat-number').value;
+            const societyCode = document.getElementById('society-code').value;
             const originalContent = submitBtn.innerHTML;
+
+            // Store login data
+            loginData = {
+                phone: `${countryCode} ${mobile}`,
+                flat: flatNumber,
+                societyCode: societyCode
+            };
 
             // Show loading state
             submitBtn.innerHTML = '<span class="btn-text">Sending OTP...</span><span class="loading-spinner"></span>';
@@ -355,10 +380,26 @@
             }
         });
 
-        // Continue button - Navigate to Dashboard
+        // Continue button - Save session and Navigate to Dashboard
         continueBtn.addEventListener('click', function () {
-            // Navigate to dashboard
-            window.location.href = 'dashboard.html';
+            // Determine verification status - check if this flat is in pending list
+            const pendingFlats = ['A-305', 'A-102', 'B-203', 'C-104'];
+            const verificationStatus = pendingFlats.includes(loginData.flat) ? 'pending' : 'approved';
+
+            // Save login to NeighborNetDB
+            NeighborNetDB.login('resident', {
+                phone: loginData.phone,
+                flat: loginData.flat,
+                name: '', // Name not collected at login
+                verificationStatus: verificationStatus
+            });
+
+            // Navigate based on verification status
+            if (verificationStatus === 'pending') {
+                window.location.href = 'pending-verification.html';
+            } else {
+                window.location.href = 'dashboard.html';
+            }
         });
 
         // Format phone number input
