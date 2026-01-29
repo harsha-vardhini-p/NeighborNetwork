@@ -61,11 +61,11 @@
                             </svg>
                         </div>
                         <div class="user-details">
-                            <span class="user-flat">Flat A-304</span>
-                            <span class="user-society">Sunrise Apartments</span>
+                            <span class="user-flat" id="user-flat-display">Flat A-304</span>
+                            <span class="user-society" id="user-society-display">Sunrise Apartments</span>
                         </div>
                     </div>
-                    <button class="logout-btn" id="logout-btn" onclick="window.location.href='index.html'">
+                    <button class="logout-btn" id="logout-btn">
                         <svg viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd"
                                 d="M3 3a1 1 0 00-1 1v12a1 1 0 001 1h12a1 1 0 001-1V4a1 1 0 00-1-1H3zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z"
@@ -574,10 +574,29 @@
         </div>
     </div>
 
+    <script src="neighbornet-db.js"></script>
     <script>
-        // View Mode Handler with Toggle Switch
+        // Auth check and user info population
         (function () {
-            const viewingMode = localStorage.getItem('neighbornet-viewing-mode') || 'standard';
+            // Require resident login
+            if (!NeighborNetDB.requireAuth('resident', 'index.html')) return;
+
+            // Check verification status - redirect pending users
+            if (!NeighborNetDB.checkVerification()) return;
+
+            // Populate user info from session
+            const user = NeighborNetDB.getCurrentUser();
+            const society = NeighborNetDB.getSociety();
+
+            if (user) {
+                document.getElementById('user-flat-display').textContent = 'Flat ' + user.flat;
+                document.getElementById('user-society-display').textContent = society.name;
+            }
+        })();
+
+        // View Mode Handler with Toggle Switch (using NeighborNetDB)
+        (function () {
+            const viewingMode = NeighborNetDB.getViewMode();
             const banner = document.getElementById('simple-view-banner');
             const toggleBtn = document.getElementById('toggle-view-btn');
             const viewModeCheckbox = document.getElementById('view-mode-checkbox');
@@ -603,17 +622,22 @@
             // Toggle switch handler
             viewModeCheckbox.addEventListener('change', () => {
                 const newMode = viewModeCheckbox.checked ? 'simple' : 'standard';
-                localStorage.setItem('neighbornet-viewing-mode', newMode);
+                NeighborNetDB.setViewMode(newMode);
                 applyViewMode(newMode);
             });
 
             // Banner toggle button handler
             toggleBtn.addEventListener('click', () => {
                 const newMode = document.body.classList.contains('simple-view') ? 'standard' : 'simple';
-                localStorage.setItem('neighbornet-viewing-mode', newMode);
+                NeighborNetDB.setViewMode(newMode);
                 applyViewMode(newMode);
             });
         })();
+
+        // Logout handler
+        document.getElementById('logout-btn').addEventListener('click', function () {
+            NeighborNetDB.logout('index.html');
+        });
 
         // Tab filtering functionality
         const tabs = document.querySelectorAll('.tab-btn');
