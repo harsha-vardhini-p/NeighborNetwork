@@ -31,7 +31,7 @@
 
     --radius-sm: 6px;
     --radius-md: 10px;
-    --radius-lg: 14px; 
+    --radius-lg: 14px;
     --radius-xl: 20px;
 
     --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -64,7 +64,7 @@ body {
 }
 
 /* ===== Header ===== */
-.header { 
+.header {
     background: var(--color-bg-card);
     border-bottom: 1px solid var(--color-border);
     position: sticky;
@@ -1536,5 +1536,346 @@ body.simple-view .toggle-switch input:checked+.toggle-slider::before {
     .btn-emergency {
         flex: none;
         width: 100%;
+    }
+}
+
+/* ===== Medical Emergency Feature ===== */
+
+/* Medical Emergency Card */
+.medical-emergency-card {
+    border: 2px solid #0D9488;
+    background: linear-gradient(135deg, #F0FDFA 0%, #CCFBF1 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.medical-emergency-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #14B8A6, #0D9488);
+}
+
+.medical-emergency-card:hover {
+    border-color: #0F766E;
+    background: linear-gradient(135deg, #CCFBF1 0%, #99F6E4 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(13, 148, 136, 0.2);
+}
+
+.tool-icon.medical {
+    background: linear-gradient(135deg, #14B8A6, #0D9488);
+    box-shadow: 0 4px 12px rgba(13, 148, 136, 0.3);
+}
+
+/* Medical Modal Styles */
+.medical-modal {
+    max-width: 520px;
+}
+
+.medical-modal-header {
+    background: linear-gradient(135deg, #CCFBF1, #99F6E4);
+    border-bottom: 2px solid #14B8A6;
+}
+
+.medical-icon-wrapper {
+    background: linear-gradient(135deg, #14B8A6, #0D9488);
+    animation: medicalPulse 2s infinite;
+}
+
+@keyframes medicalPulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(20, 184, 166, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 0 0 15px rgba(20, 184, 166, 0);
+    }
+}
+
+.medical-modal-title {
+    color: #0F766E;
+}
+
+.medical-modal-subtitle {
+    color: #0D9488;
+}
+
+.medical-modal-body {
+    padding: 1.5rem;
+}
+
+/* Medical Alert Info */
+.medical-alert-info {
+    background: linear-gradient(135deg, #F0FDFA, #CCFBF1);
+    border: 2px solid #14B8A6;
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.medical-flat-badge {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    margin-bottom: 0.75rem;
+}
+
+.flat-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #0F766E;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.flat-number {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #0D9488;
+    letter-spacing: 0.02em;
+}
+
+.medical-timestamp {
+    font-size: 0.875rem;
+    color: #0F766E;
+}
+
+/* Quick Actions Section */
+.medical-quick-actions {
+    margin-bottom: 1.5rem;
+}
+
+.quick-actions-title {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.btn-call-resident,
+.btn-notify-security {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    padding: 1rem 1.25rem;
+    border: none;
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    font-family: inherit;
+    text-align: left;
+    transition: all var(--transition-fast);
+    margin-bottom: 0.75rem;
+}
+
+.btn-call-resident {
+    background: linear-gradient(135deg, #10B981, #059669);
+    color: white;
+}
+
+.btn-call-resident:hover {
+    background: linear-gradient(135deg, #059669, #047857);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35);
+}
+
+.btn-notify-security {
+    background: linear-gradient(135deg, #3B82F6, #2563EB);
+    color: white;
+}
+
+.btn-notify-security:hover {
+    background: linear-gradient(135deg, #2563EB, #1D4ED8);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.35);
+}
+
+.action-icon-wrapper {
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.action-icon-wrapper svg {
+    width: 24px;
+    height: 24px;
+}
+
+.action-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.action-label {
+    font-size: 1.0625rem;
+    font-weight: 700;
+}
+
+.action-desc {
+    font-size: 0.8125rem;
+    opacity: 0.9;
+}
+
+/* Action triggered state */
+.btn-call-resident.action-triggered,
+.btn-notify-security.action-triggered {
+    opacity: 0.8;
+    transform: scale(0.98);
+}
+
+/* Medical Note */
+.medical-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.625rem;
+    padding: 0.875rem 1rem;
+    background: #F0FDFA;
+    border: 1px solid #14B8A6;
+    border-radius: var(--radius-md);
+}
+
+.medical-note svg {
+    width: 20px;
+    height: 20px;
+    color: #0D9488;
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+}
+
+.medical-note span {
+    font-size: 0.8125rem;
+    color: #0F766E;
+    line-height: 1.5;
+}
+
+.medical-note strong {
+    font-weight: 700;
+    color: #0D9488;
+}
+
+/* Medical Modal Footer */
+.medical-modal-footer {
+    padding: 1rem 1.5rem 1.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.btn-medical-cancel {
+    padding: 0.875rem 2.5rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    font-family: inherit;
+    color: var(--color-text-secondary);
+    background: var(--color-bg-input);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.btn-medical-cancel:hover {
+    background: var(--color-bg-page);
+    border-color: var(--color-text-muted);
+}
+
+/* Simple View Mode Adjustments for Medical Emergency */
+body.simple-view .medical-emergency-card {
+    border-width: 3px;
+}
+
+body.simple-view .flat-label {
+    font-size: 1rem;
+}
+
+body.simple-view .flat-number {
+    font-size: 2.25rem;
+}
+
+body.simple-view .medical-timestamp {
+    font-size: 1rem;
+}
+
+body.simple-view .quick-actions-title {
+    font-size: 1.125rem;
+}
+
+body.simple-view .btn-call-resident,
+body.simple-view .btn-notify-security {
+    padding: 1.25rem 1.5rem;
+}
+
+body.simple-view .action-icon-wrapper {
+    width: 56px;
+    height: 56px;
+}
+
+body.simple-view .action-icon-wrapper svg {
+    width: 28px;
+    height: 28px;
+}
+
+body.simple-view .action-label {
+    font-size: 1.25rem;
+}
+
+body.simple-view .action-desc {
+    font-size: 0.9375rem;
+}
+
+body.simple-view .medical-note {
+    padding: 1rem 1.25rem;
+}
+
+body.simple-view .medical-note span {
+    font-size: 0.9375rem;
+}
+
+body.simple-view .btn-medical-cancel {
+    padding: 1rem 3rem;
+    font-size: 1.0625rem;
+}
+
+/* Responsive adjustments for Medical Modal */
+@media (max-width: 480px) {
+    .medical-modal {
+        max-width: 100%;
+    }
+
+    .medical-alert-info {
+        padding: 1.25rem;
+    }
+
+    .flat-number {
+        font-size: 1.5rem;
+    }
+
+    .btn-call-resident,
+    .btn-notify-security {
+        padding: 0.875rem 1rem;
+    }
+
+    .action-icon-wrapper {
+        width: 40px;
+        height: 40px;
+    }
+
+    .action-icon-wrapper svg {
+        width: 20px;
+        height: 20px;
     }
 }

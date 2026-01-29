@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="NeighborNet - Your Community Dashboard">
-    <title>Dashboard | NeighborNet</title>
+    <meta name="description" content="NeighbourNet - Your Community Dashboard">
+    <title>Dashboard | NeighbourNet</title>
     <link rel="stylesheet" href="dashboard.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,7 +28,7 @@
                             </linearGradient>
                         </defs>
                     </svg>
-                    <span class="logo-text">NeighborNet</span>
+                    <span class="logo-text">NeighbourNet</span>
                 </div>
             </div>
 
@@ -181,6 +181,21 @@
                                 clip-rule="evenodd" />
                         </svg>
                     </a>
+                    <!-- Medical Emergency Quick Action -->
+                    <button class="tool-card medical-emergency-card" id="medical-emergency-btn" type="button">
+                        <div class="tool-icon medical">
+                            <span>🏥</span>
+                        </div>
+                        <div class="tool-info">
+                            <span class="tool-name">Medical Emergency</span>
+                            <span class="tool-desc">Quick help for health crisis</span>
+                        </div>
+                        <svg class="tool-arrow" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </button>
                 </div>
             </section>
 
@@ -330,7 +345,7 @@
                                 </svg>
                                 <span>2</span>
                             </button>
-                        </div>       
+                        </div>
                     </div>
                 </article>
 
@@ -486,6 +501,79 @@
         </div>
     </div>
 
+    <!-- Medical Emergency Modal -->
+    <div class="modal-overlay" id="medical-emergency-modal">
+        <div class="modal-container medical-modal">
+            <div class="modal-header medical-modal-header">
+                <div class="modal-icon-wrapper medical-icon-wrapper">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                    </svg>
+                </div>
+                <h2 class="modal-title medical-modal-title">Medical Emergency Alert</h2>
+                <p class="modal-subtitle medical-modal-subtitle">Help is being requested for a health emergency</p>
+                <button class="modal-close" id="medical-modal-close">&times;</button>
+            </div>
+            <div class="modal-body medical-modal-body">
+                <!-- Reporting Flat Number Badge -->
+                <div class="medical-alert-info">
+                    <div class="medical-flat-badge">
+                        <span class="flat-label">Emergency from</span>
+                        <span class="flat-number">Flat A-304</span>
+                    </div>
+                    <div class="medical-timestamp">
+                        <span id="medical-alert-time">Reported just now</span>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="medical-quick-actions">
+                    <h3 class="quick-actions-title">Quick Actions</h3>
+
+                    <button class="btn-call-resident" id="btn-call-resident">
+                        <div class="action-icon-wrapper">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path
+                                    d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
+                            </svg>
+                        </div>
+                        <div class="action-text">
+                            <span class="action-label">Call Resident</span>
+                            <span class="action-desc">Contact flat directly</span>
+                        </div>
+                    </button>
+
+                    <button class="btn-notify-security" id="btn-notify-security">
+                        <div class="action-icon-wrapper">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                                <path d="M13.73 21a2 2 0 01-3.46 0" />
+                            </svg>
+                        </div>
+                        <div class="action-text">
+                            <span class="action-label">Notify Security & Admin</span>
+                            <span class="action-desc">Alert building management</span>
+                        </div>
+                    </button>
+                </div>
+
+                <!-- Emergency Note -->
+                <div class="medical-note">
+                    <svg viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    <span>For life-threatening emergencies, also call <strong>108</strong> (Ambulance) or
+                        <strong>112</strong> (Emergency Services)</span>
+                </div>
+            </div>
+            <div class="modal-footer medical-modal-footer">
+                <button type="button" class="btn-medical-cancel" id="btn-medical-cancel">Close</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         // View Mode Handler with Toggle Switch
         (function () {
@@ -630,6 +718,7 @@
             if (e.key === 'Escape') {
                 closeEmergencyModal();
                 closeSuccessModal();
+                closeMedicalModal();
             }
         });
 
@@ -639,6 +728,62 @@
                 const action = btn.querySelector('span').textContent;
                 alert(`${action} feature coming soon!`);
             });
+        });
+
+        // Medical Emergency Modal Handler
+        const medicalEmergencyBtn = document.getElementById('medical-emergency-btn');
+        const medicalModal = document.getElementById('medical-emergency-modal');
+        const medicalModalClose = document.getElementById('medical-modal-close');
+        const btnMedicalCancel = document.getElementById('btn-medical-cancel');
+        const btnCallResident = document.getElementById('btn-call-resident');
+        const btnNotifySecurity = document.getElementById('btn-notify-security');
+        const medicalAlertTime = document.getElementById('medical-alert-time');
+
+        function openMedicalModal() {
+            medicalModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            // Update timestamp
+            medicalAlertTime.textContent = 'Reported just now';
+        }
+
+        function closeMedicalModal() {
+            medicalModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Medical Emergency button opens modal
+        medicalEmergencyBtn.addEventListener('click', openMedicalModal);
+
+        // Close modal handlers
+        medicalModalClose.addEventListener('click', closeMedicalModal);
+        btnMedicalCancel.addEventListener('click', closeMedicalModal);
+
+        // Close on overlay click
+        medicalModal.addEventListener('click', (e) => {
+            if (e.target === medicalModal) closeMedicalModal();
+        });
+
+        // Quick action buttons
+        btnCallResident.addEventListener('click', () => {
+            // Simulate call action
+            btnCallResident.classList.add('action-triggered');
+            btnCallResident.querySelector('.action-label').textContent = 'Calling...';
+            setTimeout(() => {
+                alert('Calling Flat A-304...\n\nThis would initiate a call to the resident.');
+                btnCallResident.classList.remove('action-triggered');
+                btnCallResident.querySelector('.action-label').textContent = 'Call Resident';
+            }, 500);
+        });
+
+        btnNotifySecurity.addEventListener('click', () => {
+            // Simulate notification action
+            btnNotifySecurity.classList.add('action-triggered');
+            btnNotifySecurity.querySelector('.action-label').textContent = 'Notifying...';
+            setTimeout(() => {
+                alert('✓ Security & Admin Notified!\n\nBuilding management has been alerted about the medical emergency at Flat A-304.');
+                btnNotifySecurity.classList.remove('action-triggered');
+                btnNotifySecurity.querySelector('.action-label').textContent = 'Notify Security & Admin';
+            }, 500);
         });
     </script>
 </body>
