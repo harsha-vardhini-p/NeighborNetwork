@@ -153,7 +153,15 @@
         </div>
     </div>
 
+    <script src="neighbornet-db.js"></script>
     <script>
+        // Check if already logged in as admin - redirect to dashboard
+        (function () {
+            if (NeighborNetDB.isAdmin()) {
+                window.location.href = 'admin-dashboard.html';
+            }
+        })();
+
         // DOM Elements
         const loginForm = document.getElementById('admin-login-form');
         const loginBtn = document.getElementById('login-btn');
@@ -164,6 +172,7 @@
             e.preventDefault();
 
             const adminId = document.getElementById('admin-id').value;
+            const countryCode = document.getElementById('country-code').value;
             const phone = document.getElementById('phone-number').value;
             const originalContent = loginBtn.innerHTML;
 
@@ -176,10 +185,17 @@
                 loginBtn.innerHTML = originalContent;
                 loginBtn.disabled = false;
 
+                // Save admin session to NeighborNetDB
+                NeighborNetDB.login('admin', {
+                    adminId: adminId,
+                    phone: `${countryCode} ${phone}`,
+                    name: 'Admin User'
+                });
+
                 // Show success modal
                 successModal.classList.add('active');
 
-                // Redirect after delay (for demo, would go to admin dashboard)
+                // Redirect after delay
                 setTimeout(() => {
                     window.location.href = 'admin-dashboard.html';
                 }, 2500);
