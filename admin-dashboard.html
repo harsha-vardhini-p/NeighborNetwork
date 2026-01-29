@@ -57,11 +57,11 @@
                         </svg>
                     </div>
                     <div class="admin-details">
-                        <span class="admin-name">Admin User</span>
+                        <span class="admin-name" id="admin-name-display">Admin User</span>
                         <span class="admin-role">Super Admin</span>
                     </div>
                 </div>
-                <button class="logout-btn" onclick="window.location.href='admin-login.html'">
+                <button class="logout-btn" id="admin-logout-btn">
                     <svg viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd"
                             d="M3 3a1 1 0 00-1 1v12a1 1 0 001 1h12a1 1 0 001-1V4a1 1 0 00-1-1H3zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z"
@@ -665,7 +665,25 @@
         </div>
     </div>
 
+    <script src="neighbornet-db.js"></script>
     <script>
+        // Auth check and admin info population
+        (function () {
+            // Require admin login
+            if (!NeighborNetDB.requireAuth('admin', 'admin-login.html')) return;
+
+            // Populate admin info from session
+            const user = NeighborNetDB.getCurrentUser();
+            if (user && user.adminId) {
+                document.getElementById('admin-name-display').textContent = user.name || 'Admin User';
+            }
+        })();
+
+        // Logout handler
+        document.getElementById('admin-logout-btn').addEventListener('click', function () {
+            NeighborNetDB.logout('admin-login.html');
+        });
+
         // Create Notice Modal
         const createNoticeBtn = document.getElementById('create-notice-btn');
         const noticeModal = document.getElementById('notice-modal');
@@ -733,12 +751,25 @@
             }
         });
 
-        // Resident Verification - Approve
+        // Get resident ID from flat number (for NeighborNetDB)
+        function getResidentIdByFlat(flatNumber) {
+            const residents = NeighborNetDB.getResidents();
+            const resident = residents.find(r => r.flat === flatNumber);
+            return resident ? resident.id : null;
+        }
+
+        // Resident Verification - Approve (with persistence)
         function approveResident(btn) {
             const item = btn.closest('.verification-item');
             const flatNumber = item.querySelector('.flat-number-badge').textContent;
             const statusTag = item.querySelector('.status-tag');
             const actionsDiv = item.querySelector('.verification-actions');
+
+            // Persist to NeighborNetDB
+            const residentId = getResidentIdByFlat(flatNumber);
+            if (residentId) {
+                NeighborNetDB.approveResident(residentId);
+            }
 
             // Update status
             statusTag.textContent = 'Approved';
@@ -757,12 +788,18 @@
             showToast('✅ ' + flatNumber + ' resident approved successfully');
         }
 
-        // Resident Verification - Reject
+        // Resident Verification - Reject (with persistence)
         function rejectResident(btn) {
             const item = btn.closest('.verification-item');
             const flatNumber = item.querySelector('.flat-number-badge').textContent;
 
             if (confirm('Are you sure you want to reject the access request for ' + flatNumber + '?')) {
+                // Persist to NeighborNetDB
+                const residentId = getResidentIdByFlat(flatNumber);
+                if (residentId) {
+                    NeighborNetDB.rejectResident(residentId);
+                }
+
                 // Animate out
                 item.style.opacity = '0';
                 item.style.transform = 'translateX(-20px)';
