@@ -30,8 +30,8 @@
                 <span class="logo-text">NeighbourNet</span>
             </div>
             <div class="user-info">
-                <span class="user-flat">Flat A-305</span>
-                <button class="logout-btn" onclick="window.location.href='index.html'">
+                <span class="user-flat" id="user-flat-display">Flat A-305</span>
+                <button class="logout-btn" id="logout-btn">
                     <svg viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd"
                             d="M3 3a1 1 0 00-1 1v12a1 1 0 001 1h12a1 1 0 001-1V4a1 1 0 00-1-1H3zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z"
@@ -93,15 +93,15 @@
                     <div class="details-grid">
                         <div class="detail-item">
                             <span class="detail-label">Flat Number</span>
-                            <span class="detail-value">A-305</span>
+                            <span class="detail-value" id="detail-flat">A-305</span>
                         </div>
                         <div class="detail-item">
                             <span class="detail-label">Society</span>
-                            <span class="detail-value">Sunrise Apartments</span>
+                            <span class="detail-value" id="detail-society">Sunrise Apartments</span>
                         </div>
                         <div class="detail-item">
                             <span class="detail-label">Phone</span>
-                            <span class="detail-value">+91 98***43210</span>
+                            <span class="detail-value" id="detail-phone">+91 98***43210</span>
                         </div>
                         <div class="detail-item">
                             <span class="detail-label">Submitted</span>
@@ -279,6 +279,57 @@
             </p>
         </div>
     </main>
+
+    <script src="neighbornet-db.js"></script>
+    <script>
+        // Session check and user info population
+        (function () {
+            // Check if logged in
+            if (!NeighborNetDB.isLoggedIn()) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            const user = NeighborNetDB.getCurrentUser();
+            const society = NeighborNetDB.getSociety();
+
+            // If approved, redirect to dashboard
+            if (user.verificationStatus === 'approved') {
+                window.location.href = 'dashboard.html';
+                return;
+            }
+
+            // Populate user info
+            if (user) {
+                document.getElementById('user-flat-display').textContent = 'Flat ' + user.flat;
+                document.getElementById('detail-flat').textContent = user.flat;
+                document.getElementById('detail-society').textContent = society.name;
+
+                // Mask phone number for display
+                if (user.phone) {
+                    const phone = user.phone;
+                    const masked = phone.substring(0, 7) + '***' + phone.substring(phone.length - 5);
+                    document.getElementById('detail-phone').textContent = masked;
+                }
+            }
+        })();
+
+        // Logout handler
+        document.getElementById('logout-btn').addEventListener('click', function () {
+            NeighborNetDB.logout('index.html');
+        });
+
+        // Refresh status - check if approved and redirect
+        document.querySelector('.btn-text').addEventListener('click', function (e) {
+            e.preventDefault();
+            const user = NeighborNetDB.getCurrentUser();
+            if (user && user.verificationStatus === 'approved') {
+                window.location.href = 'dashboard.html';
+            } else {
+                location.reload();
+            }
+        });
+    </script>
 </body>
 
 </html>
