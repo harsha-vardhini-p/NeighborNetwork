@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NeighbourNet Admin - Resident Management & Verification">
+    <title>Resident Management | NeighbourNet Admin</title>
+    <link rel="stylesheet" href="admin-residents.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="header-left">
+                <a href="admin-dashboard.html" class="back-link">
+                    <svg viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    Dashboard
+                </a>
+                <div class="logo">
+                    <svg class="logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="32" height="32" rx="8" fill="url(#adminGrad2)" />
+                        <path d="M16 8L22 12.5V22H19V16H13V22H10V12.5L16 8Z" fill="white" />
+                        <defs>
+                            <linearGradient id="adminGrad2" x1="0" y1="0" x2="32" y2="32">
+                                <stop stop-color="#4F46E5" />
+                                <stop offset="1" stop-color="#3730A3" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <div class="logo-text-group">
+                        <span class="logo-text">NeighbourNet</span>
+                        <span class="admin-tag">Admin</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="header-right">
+                <div class="society-badge">
+                    <svg viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H4a1 1 0 110-2V4z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    Sunrise Apartments
+                </div>
+                <button class="logout-btn" onclick="window.location.href='admin-login.html'">
+                    <svg viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M3 3a1 1 0 00-1 1v12a1 1 0 001 1h12a1 1 0 001-1V4a1 1 0 00-1-1H3zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    Logout
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="page-header">
+                <div class="page-title-group">
+                    <h1 class="page-title">Resident Management</h1>
+                    <p class="page-subtitle">Verify and manage resident access to your community</p>
+                </div>
+                <div class="header-stats">
+                    <div class="stat-item pending">
+                        <span class="stat-number" id="pending-count">4</span>
+                        <span class="stat-label">Pending</span>
+                    </div>
+                    <div class="stat-item approved">
+                        <span class="stat-number" id="approved-count">152</span>
+                        <span class="stat-label">Approved</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Privacy Notice -->
+            <div class="privacy-banner">
+                <svg viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd"
+                        d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                        clip-rule="evenodd" />
+                </svg>
+                <span>Phone numbers are partially masked for resident privacy</span>
+            </div>
+
+            <!-- Tabs -->
+            <div class="tabs-container">
+                <div class="tabs">
+                    <button class="tab active" data-tab="pending" onclick="switchTab('pending')">
+                        <svg viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        Pending Verification
+                        <span class="tab-count pending">4</span>
+                    </button>
+                    <button class="tab" data-tab="approved" onclick="switchTab('approved')">
+                        <svg viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        Approved Residents
+                        <span class="tab-count approved">152</span>
+                    </button>
+                </div>
+
+                <!-- Search & Filter -->
+                <div class="search-bar">
+                    <svg viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    <input type="text" placeholder="Search by flat number or name..." id="search-input"
+                        onkeyup="filterResidents()">
+                </div>
+            </div>
+
+            <!-- Tab Content -->
+            <div class="tab-content">
+                <!-- Pending Verification Tab -->
+                <div class="tab-panel active" id="pending-panel">
+                    <div class="panel-header">
+                        <h2 class="panel-title">Awaiting Your Approval</h2>
+                        <p class="panel-subtitle">Review and verify new resident registration requests</p>
+                    </div>
+
+                    <div class="residents-table">
+                        <div class="table-header">
+                            <div class="col-flat">Flat</div>
+                            <div class="col-name">Resident Name</div>
+                            <div class="col-phone">Phone Number</div>
+                            <div class="col-date">Requested</div>
+                            <div class="col-status">Status</div>
+                            <div class="col-actions">Actions</div>
+                        </div>
+
+                        <div class="table-body" id="pending-list">
+                            <!-- Pending Row 1 -->
+                            <div class="table-row pending-row" data-flat="A-305" data-name="Rajesh Kumar">
+                                <div class="col-flat">
+                                    <span class="flat-badge">A-305</span>
+                                </div>
+                                <div class="col-name">
+                                    <span class="resident-name">Rajesh Kumar</span>
+                                </div>
+                                <div class="col-phone">
+                                    <span class="phone-masked">+91 98***43210</span>
+                                </div>
+                                <div class="col-date">
+                                    <span class="date-text">Jan 29, 2026</span>
+                                    <span class="time-text">10:30 AM</span>
+                                </div>
+                                <div class="col-status">
+                                    <span class="status-badge pending">Pending</span>
+                                </div>
+                                <div class="col-actions">
+                                    <button class="btn-approve" onclick="approveResident(this)">
+                                        <svg viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd"
+                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                        Approve
+                                    </button>
+                                    <button class="btn-reject" onclick="rejectResident(this)">
+                                        <svg viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd"
+                                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                        Reject
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Pending Row 2 -->
+                            <div class="table-row pending-row" data-flat="B-203" data-name="Priya Sharma">
+                                <div class="col-flat">
+                                    <span class="flat-badge">B-203</span>
+                                </div>
+                                <div class="col-name">
+                                    <span class="resident-name">Priya Sharma</span>
+                                </div>
+                                <div class="col-phone">
+                                    <span class="phone-masked">+91 87***65432</span>
+                                </div>
+                                <div class="col-date">
+                                    <span class="date-text">Jan 28, 2026</span>
+                                    <span class="time-text">3:45 PM</span>
+                                </div>
+                                <div class="col-status">
+                                    <span class="status-badge pending">Pending</span>
+                                </div>
+                                <div class="col-actions">
+                                    <button class="btn-approve" onclick="approveResident(this)">
+                                        <svg viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd"
+                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                        Approve
+                                    </button>
+                                    <button class="btn-reject" onclick="rejectResident(this)">
+                                        <svg viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd"
+                                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                        Reject
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Pending Row 3 - No name provided -->
+                            <div class="table-row pending-row" data-flat="C-104" data-name="">
+                                <div class="col-flat">
+                                    <span class="flat-badge">C-104</span>
+                                </div>
+                                <div class="col-name">
+                                    <span class="resident-name empty">Not provided</span>
+                                </div>
+                                <div class="col-phone">
+                                    <span class="phone-masked">+91 99***21098</span>
+                                </div>
+                                <div class="col-date">
+                                    <span class="date-text">Jan 28, 2026</span>
+                                    <span class="time-text">11:15 AM</span>
+                                </div>
+                                <div class="col-status">
+                                    <span class="status-badge pending">Pending</span>
+                                </div>
+                                <div class="col-actions">
+                                    <button class="btn-approve" onclick="approveResident(this)">
+                                        <svg viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd"
+                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                        Approve
+                                    </button>
+                                    <button class="btn-reject" onclick="rejectResident(this)">
+                                        <svg viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd"
+                                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                        Reject
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Pending Row 4 -->
+                            <div class="table-row pending-row" data-flat="A-102" data-name="Amit Patel">
+                                <div class="col-flat">
+                                    <span class="flat-badge">A-102</span>
+                                </div>
+                                <div class="col-name">
+                                    <span class="resident-name">Amit Patel</span>
+                                </div>
+                                <div class="col-phone">
+                                    <span class="phone-masked">+91 70***87654</span>
+                                </div>
+                                <div class="col-date">
+                                    <span class="date-text">Jan 27, 2026</span>
+                                    <span class="time-text">9:00 AM</span>
+                                </div>
+                                <div class="col-status">
+                                    <span class="status-badge pending">Pending</span>
+                                </div>
+                                <div class="col-actions">
+                                    <button class="btn-approve" onclick="approveResident(this)">
+                                        <svg viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd"
+                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                        Approve
+                                    </button>
+                                    <button class="btn-reject" onclick="rejectResident(this)">
+                                        <svg viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd"
+                                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                        Reject
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Empty State for Pending -->
+                    <div class="empty-state" id="pending-empty" style="display: none;">
+                        <div class="empty-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <h3>All Caught Up!</h3>
+                        <p>No pending verification requests at the moment.</p>
+                    </div>
+                </div>
+
+                <!-- Approved Residents Tab -->
+                <div class="tab-panel" id="approved-panel">
+                    <div class="panel-header">
+                        <h2 class="panel-title">Verified Residents</h2>
+                        <p class="panel-subtitle">All verified and active residents in your community</p>
+                    </div>
+
+                    <div class="residents-table">
+                        <div class="table-header">
+                            <div class="col-flat">Flat</div>
+                            <div class="col-name">Resident Name</div>
+                            <div class="col-phone">Phone Number</div>
+                            <div class="col-date">Verified On</div>
+                            <div class="col-status">Status</div>
+                            <div class="col-actions">Actions</div>
+                        </div>
+
+                        <div class="table-body" id="approved-list">
+                            <!-- Approved Row 1 -->
+                            <div class="table-row approved-row" data-flat="A-101" data-name="Sunita Verma">
+                                <div class="col-flat">
+                                    <span class="flat-badge approved">A-101</span>
+                                </div>
+                                <div class="col-name">
+                                    <span class="resident-name">Sunita Verma</span>
+                                </div>
+                                <div class="col-phone">
+                                    <span class="phone-masked">+91 88***12345</span>
+                                </div>
+                                <div class="col-date">
+                                    <span class="date-text">Jan 15, 2026</span>
+                                </div>
+                                <div class="col-status">
+                                    <span class="status-badge approved">Active</span>
+                                </div>
+                                <div class="col-actions">
+                                    <button class="btn-view" onclick="viewResident(this)">View</button>
+                                    <button class="btn-revoke" onclick="revokeAccess(this)">Revoke</button>
+                                </div>
+                            </div>
+
+                            <!-- Approved Row 2 -->
+                            <div class="table-row approved-row" data-flat="A-102" data-name="Vikram Singh">
+                                <div class="col-flat">
+                                    <span class="flat-badge approved">A-102</span>
+                                </div>
+                                <div class="col-name">
+                                    <span class="resident-name">Vikram Singh</span>
+                                </div>
+                                <div class="col-phone">
+                                    <span class="phone-masked">+91 91***54321</span>
+                                </div>
+                                <div class="col-date">
+                                    <span class="date-text">Jan 10, 2026</span>
+                                </div>
+                                <div class="col-status">
+                                    <span class="status-badge approved">Active</span>
+                                </div>
+                                <div class="col-actions">
+                                    <button class="btn-view" onclick="viewResident(this)">View</button>
+                                    <button class="btn-revoke" onclick="revokeAccess(this)">Revoke</button>
+                                </div>
+                            </div>
+
+                            <!-- Approved Row 3 -->
+                            <div class="table-row approved-row" data-flat="A-103" data-name="Neha Gupta">
+                                <div class="col-flat">
+                                    <span class="flat-badge approved">A-103</span>
+                                </div>
+                                <div class="col-name">
+                                    <span class="resident-name">Neha Gupta</span>
+                                </div>
+                                <div class="col-phone">
+                                    <span class="phone-masked">+91 85***98765</span>
+                                </div>
+                                <div class="col-date">
+                                    <span class="date-text">Jan 08, 2026</span>
+                                </div>
+                                <div class="col-status">
+                                    <span class="status-badge approved">Active</span>
+                                </div>
+                                <div class="col-actions">
+                                    <button class="btn-view" onclick="viewResident(this)">View</button>
+                                    <button class="btn-revoke" onclick="revokeAccess(this)">Revoke</button>
+                                </div>
+                            </div>
+
+                            <!-- Approved Row 4 -->
+                            <div class="table-row approved-row" data-flat="B-101" data-name="Ramesh Iyer">
+                                <div class="col-flat">
+                                    <span class="flat-badge approved">B-101</span>
+                                </div>
+                                <div class="col-name">
+                                    <span class="resident-name">Ramesh Iyer</span>
+                                </div>
+                                <div class="col-phone">
+                                    <span class="phone-masked">+91 99***11223</span>
+                                </div>
+                                <div class="col-date">
+                                    <span class="date-text">Jan 05, 2026</span>
+                                </div>
+                                <div class="col-status">
+                                    <span class="status-badge approved">Active</span>
+                                </div>
+                                <div class="col-actions">
+                                    <button class="btn-view" onclick="viewResident(this)">View</button>
+                                    <button class="btn-revoke" onclick="revokeAccess(this)">Revoke</button>
+                                </div>
+                            </div>
+
+                            <!-- Approved Row 5 -->
+                            <div class="table-row approved-row" data-flat="B-102" data-name="Anita Desai">
+                                <div class="col-flat">
+                                    <span class="flat-badge approved">B-102</span>
+                                </div>
+                                <div class="col-name">
+                                    <span class="resident-name">Anita Desai</span>
+                                </div>
+                                <div class="col-phone">
+                                    <span class="phone-masked">+91 78***33445</span>
+                                </div>
+                                <div class="col-date">
+                                    <span class="date-text">Jan 03, 2026</span>
+                                </div>
+                                <div class="col-status">
+                                    <span class="status-badge approved">Active</span>
+                                </div>
+                                <div class="col-actions">
+                                    <button class="btn-view" onclick="viewResident(this)">View</button>
+                                    <button class="btn-revoke" onclick="revokeAccess(this)">Revoke</button>
+                                </div>
+                            </div>
+
+                            <!-- Approved Row 6 -->
+                            <div class="table-row approved-row" data-flat="C-101" data-name="Karan Mehta">
+                                <div class="col-flat">
+                                    <span class="flat-badge approved">C-101</span>
+                                </div>
+                                <div class="col-name">
+                                    <span class="resident-name">Karan Mehta</span>
+                                </div>
+                                <div class="col-phone">
+                                    <span class="phone-masked">+91 96***77889</span>
+                                </div>
+                                <div class="col-date">
+                                    <span class="date-text">Dec 28, 2025</span>
+                                </div>
+                                <div class="col-status">
+                                    <span class="status-badge approved">Active</span>
+                                </div>
+                                <div class="col-actions">
+                                    <button class="btn-view" onclick="viewResident(this)">View</button>
+                                    <button class="btn-revoke" onclick="revokeAccess(this)">Revoke</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="pagination">
+                        <span class="pagination-info">Showing 1-6 of 152 residents</span>
+                        <div class="pagination-controls">
+                            <button class="page-btn" disabled>
+                                <svg viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                            <button class="page-btn active">1</button>
+                            <button class="page-btn">2</button>
+                            <button class="page-btn">3</button>
+                            <span class="page-ellipsis">...</span>
+                            <button class="page-btn">26</button>
+                            <button class="page-btn">
+                                <svg viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // Tab Switching
+        function switchTab(tabName) {
+            // Update tab buttons
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+
+            // Update tab panels
+            document.querySelectorAll('.tab-panel').forEach(panel => {
+                panel.classList.remove('active');
+            });
+            document.getElementById(`${tabName}-panel`).classList.add('active');
+
+            // Clear search
+            document.getElementById('search-input').value = '';
+            filterResidents();
+        }
+
+        // Search/Filter
+        function filterResidents() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const activePanel = document.querySelector('.tab-panel.active');
+            const rows = activePanel.querySelectorAll('.table-row');
+
+            rows.forEach(row => {
+                const flat = row.dataset.flat.toLowerCase();
+                const name = row.dataset.name.toLowerCase();
+                if (flat.includes(query) || name.includes(query) || query === '') {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        // Approve Resident
+        function approveResident(btn) {
+            const row = btn.closest('.table-row');
+            const flat = row.dataset.flat;
+            const name = row.dataset.name || 'Resident';
+
+            // Animate row
+            row.style.background = '#D1FAE5';
+            row.style.transition = 'all 0.3s ease';
+
+            setTimeout(() => {
+                row.style.opacity = '0';
+                row.style.transform = 'translateX(20px)';
+
+                setTimeout(() => {
+                    row.remove();
+                    updateCounts();
+                    showToast(`✅ ${flat} ${name ? '(' + name + ')' : ''} approved successfully`);
+                    checkEmptyState();
+                }, 300);
+            }, 500);
+        }
+
+        // Reject Resident
+        function rejectResident(btn) {
+            const row = btn.closest('.table-row');
+            const flat = row.dataset.flat;
+
+            if (confirm(`Are you sure you want to reject the access request for ${flat}?`)) {
+                row.style.background = '#FEE2E2';
+                row.style.transition = 'all 0.3s ease';
+
+                setTimeout(() => {
+                    row.style.opacity = '0';
+                    row.style.transform = 'translateX(-20px)';
+
+                    setTimeout(() => {
+                        row.remove();
+                        updateCounts();
+                        showToast(`❌ ${flat} request rejected`);
+                        checkEmptyState();
+                    }, 300);
+                }, 300);
+            }
+        }
+
+        // View Resident
+        function viewResident(btn) {
+            const row = btn.closest('.table-row');
+            const flat = row.dataset.flat;
+            const name = row.dataset.name;
+            alert(`Viewing details for ${name} (${flat})\n\nFull resident profile would open here.`);
+        }
+
+        // Revoke Access
+        function revokeAccess(btn) {
+            const row = btn.closest('.table-row');
+            const flat = row.dataset.flat;
+            const name = row.dataset.name;
+
+            if (confirm(`Are you sure you want to revoke access for ${name} (${flat})?\n\nThis action cannot be undone.`)) {
+                row.style.opacity = '0.5';
+                showToast(`🚫 Access revoked for ${flat}`);
+            }
+        }
+
+        // Update Counts
+        function updateCounts() {
+            const pendingCount = document.querySelectorAll('#pending-list .table-row').length;
+            const approvedCount = document.querySelectorAll('#approved-list .table-row').length;
+
+            document.getElementById('pending-count').textContent = pendingCount;
+            document.getElementById('approved-count').textContent = approvedCount;
+            document.querySelector('.tab-count.pending').textContent = pendingCount;
+            document.querySelector('.tab-count.approved').textContent = approvedCount;
+        }
+
+        // Check Empty State
+        function checkEmptyState() {
+            const pendingRows = document.querySelectorAll('#pending-list .table-row').length;
+            const emptyState = document.getElementById('pending-empty');
+            const table = document.querySelector('#pending-panel .residents-table');
+
+            if (pendingRows === 0) {
+                emptyState.style.display = 'flex';
+                table.style.display = 'none';
+            }
+        }
+
+        // Toast Notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+    </script>
+</body>
+
+</html>
