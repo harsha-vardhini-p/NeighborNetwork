@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NeighbourNet Admin Portal - Secure access for community administrators">
+    <title>Admin Portal | NeighbourNet</title>
+    <link rel="stylesheet" href="admin-login.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Background Pattern -->
+    <div class="bg-pattern"></div>
+    <div class="bg-overlay"></div>
+
+    <div class="container">
+        <!-- Admin Badge -->
+        <div class="admin-badge">
+            <svg viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd"
+                    d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd" />
+            </svg>
+            <span>Secure Admin Access</span>
+        </div>
+
+        <!-- Main Login Card -->
+        <main class="main">
+            <div class="login-card">
+                <!-- Logo & Brand -->
+                <div class="brand-section">
+                    <div class="logo">
+                        <div class="logo-icon-wrapper">
+                            <svg class="logo-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="48" height="48" rx="12" fill="url(#adminLogoGradient)" />
+                                <path d="M24 12L34 19V35H29V24H19V35H14V19L24 12Z" fill="white" />
+                                <circle cx="24" cy="20" r="3" fill="white" opacity="0.7" />
+                                <defs>
+                                    <linearGradient id="adminLogoGradient" x1="0" y1="0" x2="48" y2="48">
+                                        <stop stop-color="#4F46E5" />
+                                        <stop offset="1" stop-color="#3730A3" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                        <div class="logo-text-wrapper">
+                            <h1 class="logo-text">NeighbourNet</h1>
+                            <span class="admin-label">Admin Portal</span>
+                        </div>
+                    </div>
+                    <p class="tagline">Community management made simple</p>
+                </div>
+
+                <!-- Login Form -->
+                <form id="admin-login-form" class="form">
+                    <!-- Admin ID Field -->
+                    <div class="form-group">
+                        <label for="admin-id" class="form-label">Admin ID</label>
+                        <div class="input-wrapper">
+                            <div class="input-icon">
+                                <svg viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <input type="text" id="admin-id" class="form-input with-icon"
+                                placeholder="Enter your Admin ID" required autocomplete="username">
+                        </div>
+                    </div>
+
+                    <!-- Phone Number Field -->
+                    <div class="form-group">
+                        <label for="phone-number" class="form-label">Phone Number</label>
+                        <div class="input-wrapper phone-input">
+                            <select id="country-code" class="country-select" aria-label="Country code">
+                                <option value="+91">🇮🇳 +91</option>
+                                <option value="+1">🇺🇸 +1</option>
+                                <option value="+44">🇬🇧 +44</option>
+                                <option value="+971">🇦🇪 +971</option>
+                                <option value="+65">🇸🇬 +65</option>
+                                <option value="+61">🇦🇺 +61</option>
+                            </select>
+                            <input type="tel" id="phone-number" class="form-input phone-number-input"
+                                placeholder="Enter your phone number" pattern="[0-9]{10}" required>
+                        </div>
+                    </div>
+
+                    <!-- Login Button -->
+                    <button type="submit" class="btn-admin-login" id="login-btn">
+                        <span class="btn-text">Login as Admin</span>
+                        <svg class="btn-icon" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M3 3a1 1 0 011 1v12a1 1 0 11-2 0V4a1 1 0 011-1zm7.707 3.293a1 1 0 010 1.414L9.414 9H17a1 1 0 110 2H9.414l1.293 1.293a1 1 0 01-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </form>
+
+                <!-- Trust Indicators -->
+                <div class="trust-section">
+                    <div class="trust-item">
+                        <svg viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <span>256-bit Encryption</span>
+                    </div>
+                    <div class="trust-divider"></div>
+                    <div class="trust-item">
+                        <svg viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <span>Verified Access Only</span>
+                    </div>
+                </div>
+
+                <!-- Resident Login Link -->
+                <div class="resident-link">
+                    <span>Not an admin?</span>
+                    <a href="index.html">Return to Resident Login</a>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2026 NeighbourNet. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal-overlay" id="success-modal">
+        <div class="modal">
+            <div class="modal-icon success">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10" fill="#4F46E5" />
+                    <path d="M8 12l2.5 2.5L16 9" stroke="white" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </div>
+            <h2 class="modal-title">Welcome, Administrator</h2>
+            <p class="modal-subtitle">You have been successfully authenticated. Redirecting to Admin Dashboard...</p>
+            <div class="modal-loading">
+                <div class="loading-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const loginForm = document.getElementById('admin-login-form');
+        const loginBtn = document.getElementById('login-btn');
+        const successModal = document.getElementById('success-modal');
+
+        // Form submission
+        loginForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const adminId = document.getElementById('admin-id').value;
+            const phone = document.getElementById('phone-number').value;
+            const originalContent = loginBtn.innerHTML;
+
+            // Show loading state
+            loginBtn.innerHTML = '<span class="btn-text">Authenticating...</span><span class="loading-spinner"></span>';
+            loginBtn.disabled = true;
+
+            // Simulate authentication
+            setTimeout(() => {
+                loginBtn.innerHTML = originalContent;
+                loginBtn.disabled = false;
+
+                // Show success modal
+                successModal.classList.add('active');
+
+                // Redirect after delay (for demo, would go to admin dashboard)
+                setTimeout(() => {
+                    window.location.href = 'admin-dashboard.html';
+                }, 2500);
+            }, 1500);
+        });
+
+        // Format phone number input
+        document.getElementById('phone-number').addEventListener('input', function (e) {
+            this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);
+        });
+
+        // Uppercase admin ID
+        document.getElementById('admin-id').addEventListener('input', function (e) {
+            this.value = this.value.toUpperCase();
+        });
+    </script>
+</body>
+
+</html>
