@@ -200,6 +200,12 @@
         </div>
     </div>
 
+    <script src="neighbornet-db.js"></script>
+    <script>
+        // Auth check
+        if (!NeighborNetDB.requireAuth('resident', 'index.html')) throw new Error('Not authenticated');
+        if (!NeighborNetDB.checkVerification()) throw new Error('Pending verification');
+    </script>
     <script>
         const notifyBtn = document.getElementById('notify-btn');
         const securityBtn = document.getElementById('security-btn');
